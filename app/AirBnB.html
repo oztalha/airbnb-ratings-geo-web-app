@@ -90,9 +90,9 @@
 			popupAnchor:  [5, -16]
 		    }
 		});
-		var houseIcon = new MyIcon({iconUrl: 'images/house.png'});
-		var roomIcon = new MyIcon({iconUrl: 'images/room.png'});
-		var sharedIcon = new MyIcon({iconUrl: 'images/shared.png'});
+		var houseIcon = new MyIcon({iconUrl: 'icons/house.png'});
+		var roomIcon = new MyIcon({iconUrl: 'icons/room.png'});
+		var sharedIcon = new MyIcon({iconUrl: 'icons/shared.png'});
 
 
 		queryWFS(URL);
@@ -110,13 +110,14 @@
 			//    console.log(data);
 			geojsonlayer = L.geoJson(data, {
 				onEachFeature: function(feature, my_Layer) {
-					my_Layer.bindPopup("<a href='" + feature.properties.listing_url+"' target='_blank'>Original post</a><br>"+
-							   "Accuracy: "+feature.properties.accuracy+"<br>"+
-							   "Cleanliness: "+feature.properties.cleanliness+"<br>"+
-							   "Communication: "+feature.properties.communication+"<br>"+
-							   "Check in: "+feature.properties.checkin+"<br>"+
-							   "Location: "+feature.properties.location+"<br>"+
-							   "Value: "+feature.properties.value+"<br>"
+					my_Layer.bindPopup("<a href='" + feature.properties.listing_url+"' target='_blank'>"+feature.properties.name+"</a><br>"+
+							   "Accuracy: "+feature.properties.accuracy/2+"<br>"+
+							   "Cleanliness: "+feature.properties.cleanliness/2+"<br>"+
+							   "Communication: "+feature.properties.communication/2+"<br>"+
+							   "Check in: "+feature.properties.checkin/2+"<br>"+
+							   "Location: "+feature.properties.location/2+"<br>"+
+							   "Value: "+feature.properties.value/2+"<br>"+
+							   "Review count: "+feature.properties.number_of_reviews
 					);
 				},
 				pointToLayer: function(feature, latlng) {
